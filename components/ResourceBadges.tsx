@@ -1,21 +1,13 @@
 export default function ResourceBadges() {
   return (
-
-    <div className="flex flex-wrap gap-3 mt-6">
-
-      <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
-        📄 PDF
+    <div className="flex flex-wrap items-center gap-2 mt-3">
+      <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+        📘 Learning Resource
       </span>
 
-      <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
-        📊 PPT
+      <span className="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
+        ✓ Available
       </span>
-
-      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-        📝 Notes
-      </span>
-
     </div>
-
   );
 }

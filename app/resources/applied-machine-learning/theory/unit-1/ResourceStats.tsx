@@ -17,13 +17,28 @@ export default function ResourceStats({
   const [downloads, setDownloads] = useState(0);
   const [liked, setLiked] = useState(false);
 
-  // ============================================================
-  // LOAD STATISTICS
-  // ============================================================
-
   useEffect(() => {
     loadStats();
+
+    // Create a unique key for this resource
+    const viewKey = `resource_viewed_${resourceId}`;
+
+    // Check whether this resource has already been viewed
+    // during the current browser session.
+    const alreadyViewed = sessionStorage.getItem(viewKey);
+
+    if (!alreadyViewed) {
+      // Mark it immediately before calling Supabase.
+      // This prevents duplicate calls caused by React Strict Mode.
+      sessionStorage.setItem(viewKey, "true");
+
+      incrementView(viewKey);
+    }
   }, [resourceId]);
+
+  // --------------------------------------------------
+  // LOAD CURRENT STATISTICS
+  // --------------------------------------------------
 
   async function loadStats() {
     const { data, error } = await supabase
@@ -38,17 +53,17 @@ export default function ResourceStats({
     }
 
     if (data) {
-      setViews(data.views ?? 0);
-      setLikes(data.likes ?? 0);
-      setDownloads(data.downloads ?? 0);
+      setViews(data.views);
+      setLikes(data.likes);
+      setDownloads(data.downloads);
     }
   }
 
-  // ============================================================
-  // VIEW
-  // ============================================================
+  // --------------------------------------------------
+  // INCREMENT VIEW - ONLY ONCE PER SESSION
+  // --------------------------------------------------
 
-  async function handleView() {
+  async function incrementView(viewKey: string) {
     const { error } = await supabase.rpc(
       "increment_resource_view",
       {
@@ -57,16 +72,22 @@ export default function ResourceStats({
     );
 
     if (error) {
-      console.error("View count error:", error);
+      console.error("Error incrementing resource view:", error);
+
+      // If the database update failed,
+      // remove the session marker so it can be tried again.
+      sessionStorage.removeItem(viewKey);
+
       return;
     }
 
+    // Update the displayed number immediately.
     setViews((current) => current + 1);
   }
 
-  // ============================================================
+  // --------------------------------------------------
   // LIKE
-  // ============================================================
+  // --------------------------------------------------
 
   async function handleLike() {
     if (liked) return;
@@ -79,7 +100,7 @@ export default function ResourceStats({
     );
 
     if (error) {
-      console.error("Like count error:", error);
+      console.error("Error liking resource:", error);
       return;
     }
 
@@ -87,9 +108,9 @@ export default function ResourceStats({
     setLiked(true);
   }
 
-  // ============================================================
+  // --------------------------------------------------
   // DOWNLOAD
-  // ============================================================
+  // --------------------------------------------------
 
   async function handleDownload() {
     const { error } = await supabase.rpc(
@@ -100,68 +121,55 @@ export default function ResourceStats({
     );
 
     if (error) {
-      console.error("Download count error:", error);
+      console.error(
+        "Error incrementing download count:",
+        error
+      );
     } else {
       setDownloads((current) => current + 1);
     }
 
-    // Open existing PDF
+    // Open the existing PDF
     window.open(resourceUrl, "_blank");
   }
 
-  // ============================================================
-  // UI
-  // ============================================================
+  // --------------------------------------------------
+  // DISPLAY
+  // --------------------------------------------------
 
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-sm">
+    <div className="flex items-center gap-5 mt-3 text-sm">
 
       {/* VIEW */}
 
-      <button
-        onClick={handleView}
-        className="
-          text-gray-500
-          hover:text-blue-600
-          transition
-          cursor-pointer
-        "
-        title="View resource"
+      <span
+        className="text-gray-500"
+        title="Number of times this resource has been viewed"
       >
         👁 {views} Views
-      </button>
-
+      </span>
 
       {/* LIKE */}
 
       <button
         onClick={handleLike}
         disabled={liked}
-        className={`
-          transition
-          ${liked
+        className={`transition ${
+          liked
             ? "text-red-600"
             : "text-gray-500 hover:text-red-600"
-          }
-          ${liked ? "cursor-default" : "cursor-pointer"}
-        `}
-        title={liked ? "You liked this resource" : "Like this resource"}
+        }`}
+        title="Like this resource"
       >
         ❤️ {likes} Likes
       </button>
-
 
       {/* DOWNLOAD */}
 
       <button
         onClick={handleDownload}
-        className="
-          text-gray-500
-          hover:text-green-600
-          transition
-          cursor-pointer
-        "
-        title="Download PDF"
+        className="text-gray-500 hover:text-green-600 transition"
+        title="Download / Open PDF"
       >
         ⬇ {downloads} Downloads
       </button>
