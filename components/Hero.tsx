@@ -3,69 +3,72 @@ import Button from "./ui/Button";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-blue-50 via-white to-purple-50 py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          
-          {/* Left Side */}
+    <section className="h-[calc(100dvh-112px)] overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="mx-auto flex h-full max-w-7xl items-center px-6">
+
+        <div className="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-2">
+
+          {/* LEFT SIDE */}
           <div className="max-w-xl">
-            <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold mb-6">
-              Empowering AI Learners
+
+            {/* Badge */}
+            <div className="mb-4 inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+              ✨ Empowering AI Learners
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-blue-700 leading-tight">
-  Learn Artificial Intelligence
-  <br />
-  Build Real-World Skills
-</h1>
-            <p className="mt-6 text-lg text-gray-700 leading-9">
+            {/* Main Heading */}
+            <h1 className="text-4xl font-extrabold leading-tight text-blue-700 md:text-5xl lg:text-6xl">
+              Learn Artificial
+              <br />
+              Intelligence.
+              <br />
+
+              <span className="text-gray-900">
+                Build Real-World
+                <br />
+                Skills.
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="mt-5 max-w-lg text-base leading-7 text-gray-700 md:text-lg">
               Learn Artificial Intelligence, Machine Learning, Deep Learning,
-              Generative AI, Agentic AI, Data Science, Python and Industry
-              Projects through high-quality notes, videos, assignments and
-              real-world examples.
+              Generative AI and Agentic AI through structured learning
+              resources and practical examples.
             </p>
 
-            <div className="mt-10 flex gap-5">
+            {/* Buttons */}
+            <div className="mt-7 flex flex-wrap gap-4">
               <Button text="Start Learning" />
-              <Button text="Browse Courses" variant="secondary" />
+
+              <Button
+                text="Explore Courses"
+                variant="secondary"
+              />
             </div>
+
           </div>
 
-          {/* Right Side */}
-          <div className="flex justify-center">
-            <div className="w-96 h-96 rounded-3xl bg-white shadow-2xl flex items-center justify-center">
-              <div className="text-center">
+          {/* RIGHT SIDE */}
+          <div className="flex items-center justify-center">
 
-                <Image
-                  src="/images/logo/brahmane-ai-logo.png"
-                  alt="Brahmane AI Academy Logo"
-                  width={120}
-                  height={120}
-                  className="mx-auto"
-                />
+            <div className="relative w-full max-w-[540px]">
 
-                <h2 className="mt-5 text-2xl font-bold text-blue-700">
-                  Brahmane AI Academy
-                </h2>
+              {/* Soft background glow */}
+              <div className="absolute inset-10 rounded-full bg-blue-300/20 blur-3xl" />
 
-                <p className="mt-4 text-gray-600">
-                  Machine Learning
-                </p>
+              {/* AI Academy Hero Image */}
+              <Image
+                src="/images/hero/ai-academy-hero.png"
+                alt="Artificial Intelligence, Machine Learning, Deep Learning, Generative AI and Agentic AI"
+                width={1024}
+                height={1024}
+                priority
+                className="relative z-10 h-auto w-full object-contain"
+              />
 
-                <p className="text-gray-600">
-                  Deep Learning
-                </p>
-
-                <p className="text-gray-600">
-                  Generative AI
-                </p>
-
-                <p className="text-gray-600">
-                  Agentic AI
-                </p>
-
-              </div>
             </div>
+
           </div>
 
         </div>
