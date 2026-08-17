@@ -1,49 +1,79 @@
 import Link from "next/link";
+import ResourceStats from "./ResourceStats";
 
 const modules = [
   {
+    id: 1,
     title: "Evolution of NLP, Transformers and LLMs",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/evolution-of-nlp.pdf",
+    resourceId: 6,
   },
+
   {
+    id: 2,
     title: "Transformer Architecture (Deep Dive)",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/transformers.pdf",
+    resourceId: 7,
   },
+
   {
+    id: 3,
     title: "Pre-training Objectives (Causal LM & Masked LM)",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/Pre-train.pdf",
+    resourceId: 8,
   },
+
   {
+    id: 4,
     title: "Tokenization (BPE & WordPiece)",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/tokenization.pdf",
+    resourceId: 9,
   },
+
   {
+    id: 5,
     title: "Scaling Laws & Emergent Abilities",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/scaling-laws.pdf",
+    resourceId: 10,
   },
+
   {
+    id: 6,
     title: "Overview of GPT, BERT, LLaMA & PaLM",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/LLAM-PaLM.pdf",
+    resourceId: 11,
   },
+
   {
+    id: 7,
     title: "Metrics & Evaluation of Large Language Models",
+    type: "pdf",
     href: "/pdf/agentic-ai/unit-1/llm-evaluation.pdf",
+    resourceId: 12,
   },
 ];
 
 export default function Unit1Page() {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-12">
+    <main className="max-w-5xl mx-auto px-6 py-12">
 
-      {/* Hero Section */}
+      {/* ============================================================
+          HERO SECTION
+      ============================================================ */}
 
       <section className="text-center mb-14">
 
-        <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold">
+        <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold">
           Unit I • CO1 • 9 Hours
         </span>
 
-        <h1 className="mt-6 text-5xl font-extrabold text-blue-700">
+        <h1 className="mt-6 text-4xl md:text-5xl font-extrabold text-blue-700">
           Foundations of Large Language Models
         </h1>
 
@@ -57,7 +87,9 @@ export default function Unit1Page() {
       </section>
 
 
-      {/* Learning Outcomes */}
+      {/* ============================================================
+          LEARNING OUTCOMES
+      ============================================================ */}
 
       <section className="bg-blue-50 border border-blue-100 rounded-2xl p-8 mb-12">
 
@@ -100,7 +132,9 @@ export default function Unit1Page() {
       </section>
 
 
-      {/* Unit Modules */}
+      {/* ============================================================
+          UNIT MODULES
+      ============================================================ */}
 
       <section>
 
@@ -108,39 +142,76 @@ export default function Unit1Page() {
           Unit Modules
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
 
-          {modules.map((module, index) => (
+          {modules.map((module) => (
 
             <div
-              key={index}
-              className="bg-white rounded-2xl shadow-md border border-gray-200 p-5 hover:shadow-lg hover:border-blue-300 transition"
+              key={module.id}
+              className="
+                bg-white
+                rounded-2xl
+                shadow-md
+                border
+                border-gray-200
+                p-5
+                hover:shadow-xl
+                hover:border-blue-400
+                transition-all
+                duration-300
+              "
             >
 
-              <div className="flex items-center gap-4">
+              {/* MODULE HEADER */}
 
-                {/* Green Check */}
+              <div className="flex items-start gap-4">
 
-                <span className="text-green-600 font-bold text-xl">
+                {/* GREEN CHECK */}
+
+                <span className="text-green-600 font-bold text-xl mt-1">
                   ✓
                 </span>
 
 
-                {/* Module Number */}
+                {/* MODULE NUMBER */}
 
-                <span className="text-blue-600 font-semibold text-sm min-w-[80px]">
-                  Module {index + 1}
+                <span className="text-blue-600 font-semibold text-sm min-w-[85px] mt-1">
+                  Module {module.id}
                 </span>
 
 
-                {/* CLICKABLE TOPIC NAME */}
+                {/* TOPIC + STATISTICS */}
 
-                <a
-                  href={module.href}
-                  className="text-lg font-semibold text-gray-800 hover:text-blue-600 hover:underline transition cursor-pointer"
-                >
-                  {module.title}
-                </a>
+                <div className="flex-1">
+
+                  {/* PDF TOPIC LINK */}
+
+                  <a
+                    href={module.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      text-lg
+                      font-semibold
+                      text-gray-800
+                      hover:text-blue-600
+                      hover:underline
+                      transition
+                      cursor-pointer
+                    "
+                  >
+                    {module.title}
+                  </a>
+
+
+                  {/* RESOURCE STATISTICS */}
+
+                  <ResourceStats
+                    resourceId={module.resourceId}
+                    resourceUrl={module.href}
+                  />
+
+                </div>
 
               </div>
 
@@ -153,20 +224,39 @@ export default function Unit1Page() {
       </section>
 
 
-      {/* Navigation */}
+      {/* ============================================================
+          NAVIGATION
+      ============================================================ */}
 
       <div className="flex justify-between mt-16">
 
         <Link
           href="/resources/agentic-ai/theory"
-          className="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-xl transition"
+          className="
+            bg-gray-700
+            hover:bg-gray-800
+            text-white
+            px-6
+            py-3
+            rounded-xl
+            transition
+          "
         >
           ← Theory Dashboard
         </Link>
 
+
         <Link
           href="/resources/agentic-ai/theory/unit-2"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition"
+          className="
+            bg-blue-600
+            hover:bg-blue-700
+            text-white
+            px-6
+            py-3
+            rounded-xl
+            transition
+          "
         >
           Next Unit →
         </Link>
