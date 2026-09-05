@@ -15,7 +15,7 @@ const modules = [
     title: "Mathematical Foundations",
     type: "pdf",
     href: "/pdf/applied-machine-learning/unit-1/mathematical-foundations.pdf",
-    resourceId: 2,
+    resourceId: 3,
   },
 
   {
@@ -23,7 +23,7 @@ const modules = [
     title: "Data Preprocessing and Exploration",
     type: "page",
     href: "/resources/applied-machine-learning/theory/unit-1/data-preprocessing",
-    resourceId: 3,
+    resourceId: 4,
   },
 
   {
@@ -31,7 +31,7 @@ const modules = [
     title: "Introduction to Supervised Learning Algorithms",
     type: "page",
     href: "/resources/applied-machine-learning/theory/unit-1/supervised-learning",
-    resourceId: 4,
+    resourceId: 5,
   },
 
   {
@@ -39,29 +39,29 @@ const modules = [
     title: "Model Evaluation and Validation",
     type: "pdf",
     href: "/pdf/applied-machine-learning/unit-1/model-evaluation-and-validation.pdf",
-    resourceId: 5,
+    resourceId: 6,
   },
 ];
 
 export default function Unit1Page() {
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12">
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
       {/* ============================================================
           HERO SECTION
       ============================================================ */}
 
-      <section className="text-center mb-14">
+      <section className="text-center mb-10 sm:mb-14">
 
-        <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold">
+        <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold text-sm sm:text-base">
           Unit I • CO1 • 9 Hours
         </span>
 
-        <h1 className="mt-6 text-4xl md:text-5xl font-extrabold text-blue-700">
+        <h1 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-700">
           Fundamentals of Applied Machine Learning
         </h1>
 
-        <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-8">
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-7 sm:leading-8">
           This unit introduces the fundamentals of Machine Learning,
           mathematical foundations, data preprocessing, supervised learning
           algorithms, and model evaluation and validation techniques.
@@ -74,13 +74,13 @@ export default function Unit1Page() {
           LEARNING OUTCOMES
       ============================================================ */}
 
-      <section className="bg-blue-50 border border-blue-100 rounded-2xl p-8 mb-12">
+      <section className="bg-blue-50 border border-blue-100 rounded-2xl p-5 sm:p-8 mb-10 sm:mb-12">
 
-        <h2 className="text-2xl font-bold text-blue-700">
+        <h2 className="text-xl sm:text-2xl font-bold text-blue-700">
           Learning Outcomes
         </h2>
 
-        <ul className="mt-5 space-y-3 text-gray-700">
+        <ul className="mt-5 space-y-3 text-sm sm:text-base text-gray-700">
 
           <li>
             ✅ Understand the fundamentals and types of Machine Learning.
@@ -114,11 +114,11 @@ export default function Unit1Page() {
 
       <section>
 
-        <h2 className="text-3xl font-bold text-blue-700 mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 mb-6 sm:mb-8">
           Unit Modules
         </h2>
 
-        <div className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
 
           {modules.map((module) => (
 
@@ -130,7 +130,8 @@ export default function Unit1Page() {
                 shadow-md
                 border
                 border-gray-200
-                p-5
+                p-4
+                sm:p-5
                 hover:shadow-xl
                 hover:border-blue-400
                 transition-all
@@ -142,25 +143,40 @@ export default function Unit1Page() {
                   MODULE HEADER
               ==================================================== */}
 
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-3 sm:gap-4">
 
-                {/* Green Check */}
+                {/* GREEN CHECK */}
 
-                <span className="text-green-600 font-bold text-xl mt-1">
+                <span className="text-green-600 font-bold text-xl mt-1 flex-shrink-0">
                   ✓
                 </span>
 
 
-                {/* Module Number */}
+                {/* MODULE NUMBER */}
 
-                <span className="text-blue-600 font-semibold text-sm min-w-[85px] mt-1">
+                <span
+                  className="
+                    text-blue-600
+                    font-semibold
+                    text-sm
+                    sm:text-base
+                    min-w-[75px]
+                    sm:min-w-[90px]
+                    mt-1
+                    flex-shrink-0
+                  "
+                >
                   Module {module.id}
                 </span>
 
 
-                {/* Topic */}
+                {/* TOPIC + STATISTICS */}
 
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
+
+                  {/* ==================================================
+                      RESOURCE LINK
+                  ================================================== */}
 
                   {module.type === "pdf" ? (
 
@@ -169,7 +185,8 @@ export default function Unit1Page() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="
-                        text-lg
+                        text-base
+                        sm:text-lg
                         font-semibold
                         text-gray-800
                         hover:text-blue-600
@@ -178,7 +195,7 @@ export default function Unit1Page() {
                         cursor-pointer
                       "
                     >
-                      {module.title}
+                      📄 {module.title}
                     </a>
 
                   ) : (
@@ -186,7 +203,8 @@ export default function Unit1Page() {
                     <Link
                       href={module.href}
                       className="
-                        text-lg
+                        text-base
+                        sm:text-lg
                         font-semibold
                         text-gray-800
                         hover:text-blue-600
@@ -195,14 +213,14 @@ export default function Unit1Page() {
                         cursor-pointer
                       "
                     >
-                      {module.title}
+                      📄 {module.title}
                     </Link>
 
                   )}
 
 
                   {/* ==================================================
-                      RESOURCE STATISTICS
+                      VIEWS / LIKES / DOWNLOADS
                   ================================================== */}
 
                   <ResourceStats
@@ -227,15 +245,29 @@ export default function Unit1Page() {
           NAVIGATION
       ============================================================ */}
 
-      <div className="flex justify-between mt-16">
+      <div
+        className="
+          flex
+          flex-col
+          sm:flex-row
+          justify-between
+          gap-4
+          mt-10
+          sm:mt-16
+        "
+      >
+
+        {/* PREVIOUS / DASHBOARD */}
 
         <Link
           href="/resources/applied-machine-learning/theory"
           className="
+            text-center
             bg-gray-700
             hover:bg-gray-800
             text-white
-            px-6
+            px-5
+            sm:px-6
             py-3
             rounded-xl
             transition
@@ -245,13 +277,17 @@ export default function Unit1Page() {
         </Link>
 
 
+        {/* NEXT UNIT */}
+
         <Link
           href="/resources/applied-machine-learning/theory/unit-2"
           className="
+            text-center
             bg-blue-600
             hover:bg-blue-700
             text-white
-            px-6
+            px-5
+            sm:px-6
             py-3
             rounded-xl
             transition
@@ -265,3 +301,4 @@ export default function Unit1Page() {
     </main>
   );
 }
+

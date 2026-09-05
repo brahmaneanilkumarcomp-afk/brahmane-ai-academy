@@ -1,76 +1,84 @@
 import Link from "next/link";
-import ResourceStats from "./ResourceStats";
+import ResourceStats from "../../agentic-ai/practical/ResourceStats";
 
 const practicals = [
   {
     id: 1,
-    title: "Basic Interaction with LLMs",
+    title: "Data Cleaning and Visualization for Retail Sales Analysis",
     active: true,
-    href: "/pdf/agentic-ai/practical/basic-interaction-with-llms.pdf",
-    resourceId: 14,
+    href: "/pdf/applied-machine-learning/practical/data-cleaning-and-visualization.pdf",
+    resourceId: 19,
   },
   {
     id: 2,
-    title: "Prompt Engineering Techniques",
+    title: "Linear Regression for House Price Prediction",
     active: true,
-    href: "/pdf/agentic-ai/practical/prompt-engineering-techniques.pdf",
-    resourceId: 15,
+    href: "/pdf/applied-machine-learning/practical/linear-regression-house-price.pdf",
+    resourceId: 20,
   },
   {
     id: 3,
-    title: "Working with LLM APIs and Parameters",
+    title: "Classification of Loan Applications Using Logistic Regression",
     active: true,
-    href: "/pdf/agentic-ai/practical/working-with-llm-apis-and-parameters.pdf",
-    resourceId: 16,
+    href: "/pdf/applied-machine-learning/practical/logistic-regression-loan-approval.pdf",
+    resourceId: 21,
   },
   {
     id: 4,
-    title: "Implementation of a Basic RAG System",
+    title: "Credit Risk Assessment in Banking (Model Evaluation Metrics)",
     active: true,
-    href: "/pdf/agentic-ai/practical/implementation-of-basic-rag-system.pdf",
-    resourceId: 17,
+    href: "/pdf/applied-machine-learning/practical/Credit-Risk-Assessment-in-Banking.pdf",
+    resourceId: 22,
   },
   {
     id: 5,
-    title: "Development of a Tool-Using AI Agent",
-    active: true,
-    href: "/pdf/agentic-ai/practical/development-of-tool-using-ai-agent.pdf",
-    resourceId: 18,
+    title: "Real-time Fraud Detection System (Model Deployment & Efficiency)",
+    active: false,
+    href: "#",
+    resourceId: 0,
   },
   {
     id: 6,
-    title: "AI Customer Support Chatbot",
-    active: false,
-    href: "#",
-    resourceId: 26,
+    title: "Customer Churn Prediction using Decision Tree Classifier",
+    active: true,
+    href: "/pdf/applied-machine-learning/practical/Decision_Tree_Classifier.pdf",
+    resourceId: 23,
   },
   {
     id: 7,
-    title: "Autonomous Task Execution Agent",
+    title: "Email Spam Detection using Naive Bayes Classifier",
     active: false,
     href: "#",
-    resourceId: 27,
+    resourceId: 0,
   },
   {
     id: 8,
-    title: "Image Captioning using Multimodal LLMs",
+    title: "Product Recommendation Category Classification using K-NN",
     active: false,
     href: "#",
-    resourceId: 28,
+    resourceId: 0,
   },
   {
     id: 9,
-    title: "Speech-to-Text and Audio Understanding Agent",
+    title:
+      "Handwritten Digit Recognition using Support Vector Machine (SVM)",
     active: false,
     href: "#",
-    resourceId: 29,
+    resourceId: 0,
   },
   {
     id: 10,
-    title: "Video Summarization using Multimodal AI",
+    title: "Bias Detection and Fairness Evaluation in Hiring Algorithms",
     active: false,
     href: "#",
-    resourceId: 30,
+    resourceId: 0,
+  },
+  {
+    id: 11,
+    title: "Edge AI for Smart Agriculture using TinyML",
+    active: false,
+    href: "#",
+    resourceId: 0,
   },
 ];
 
@@ -93,9 +101,10 @@ export default function PracticalPage() {
         </h1>
 
         <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-7 sm:leading-8">
-          Learn Agentic AI through practical implementation using LLM APIs,
-          Prompt Engineering, Embeddings, RAG, AI Agents, Multimodal AI
-          and modern AI technologies.
+          Learn Applied Machine Learning through practical implementation
+          using data preprocessing, visualization, regression, classification,
+          model evaluation, decision trees and industry-oriented machine
+          learning applications.
         </p>
 
       </section>
@@ -134,7 +143,9 @@ export default function PracticalPage() {
 
               <div className="flex items-start gap-3 sm:gap-4">
 
-                {/* CHECK / LOCK */}
+                {/* =================================================
+                    CHECK / LOCK
+                ================================================= */}
 
                 <span
                   className={`font-bold text-xl mt-1 flex-shrink-0 ${
@@ -147,7 +158,9 @@ export default function PracticalPage() {
                 </span>
 
 
-                {/* PRACTICAL NUMBER */}
+                {/* =================================================
+                    PRACTICAL NUMBER
+                ================================================= */}
 
                 <span
                   className="
@@ -165,11 +178,13 @@ export default function PracticalPage() {
                 </span>
 
 
-                {/* TITLE + STATS */}
+                {/* =================================================
+                    TITLE + STATISTICS
+                ================================================= */}
 
                 <div className="flex-1 min-w-0">
 
-                  {practical.active ? (
+                  {practical.active && practical.resourceId > 0 ? (
 
                     <>
                       <a
@@ -223,11 +238,13 @@ export default function PracticalPage() {
                 </div>
 
 
-                {/* STATUS */}
+                {/* =================================================
+                    STATUS
+                ================================================= */}
 
                 <div className="flex-shrink-0">
 
-                  {practical.active ? (
+                  {practical.active && practical.resourceId > 0 ? (
 
                     <span
                       className="
@@ -295,7 +312,7 @@ export default function PracticalPage() {
       >
 
         <Link
-          href="/resources/agentic-ai"
+          href="/resources/applied-machine-learning"
           className="
             text-center
             bg-gray-700
@@ -308,12 +325,12 @@ export default function PracticalPage() {
             transition
           "
         >
-          ← Agentic AI
+          ← Applied Machine Learning
         </Link>
 
 
         <Link
-          href="/resources/agentic-ai/theory"
+          href="/resources/applied-machine-learning/theory"
           className="
             text-center
             bg-blue-600

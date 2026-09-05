@@ -17,6 +17,10 @@ export default function ResourceStats({
   const [downloads, setDownloads] = useState(0);
   const [liked, setLiked] = useState(false);
 
+  // --------------------------------------------------
+  // LOAD STATISTICS + REGISTER VIEW
+  // --------------------------------------------------
+
   useEffect(() => {
     loadStats();
 
@@ -48,14 +52,21 @@ export default function ResourceStats({
       .single();
 
     if (error) {
-      console.error("Error loading resource statistics:", error);
+      console.error("Error loading resource statistics:", {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code,
+        resourceId: resourceId,
+      });
+
       return;
     }
 
     if (data) {
-      setViews(data.views);
-      setLikes(data.likes);
-      setDownloads(data.downloads);
+      setViews(data.views ?? 0);
+      setLikes(data.likes ?? 0);
+      setDownloads(data.downloads ?? 0);
     }
   }
 
@@ -67,21 +78,27 @@ export default function ResourceStats({
     const { error } = await supabase.rpc(
       "increment_resource_view",
       {
-        resource_id: resourceId,
+        p_resource_id: resourceId,
       }
     );
 
     if (error) {
-      console.error("Error incrementing resource view:", error);
+      console.error("Error incrementing resource view:", {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code,
+        resourceId: resourceId,
+      });
 
-      // If the database update failed,
+      // If database update failed,
       // remove the session marker so it can be tried again.
       sessionStorage.removeItem(viewKey);
 
       return;
     }
 
-    // Update the displayed number immediately.
+    // Update displayed number immediately.
     setViews((current) => current + 1);
   }
 
@@ -140,7 +157,7 @@ export default function ResourceStats({
   return (
     <div className="flex items-center gap-5 mt-3 text-sm">
 
-      {/* VIEW */}
+      {/* VIEWS */}
 
       <span
         className="text-gray-500"
@@ -149,7 +166,7 @@ export default function ResourceStats({
         👁 {views} Views
       </span>
 
-      {/* LIKE */}
+      {/* LIKES */}
 
       <button
         onClick={handleLike}
@@ -164,7 +181,7 @@ export default function ResourceStats({
         ❤️ {likes} Likes
       </button>
 
-      {/* DOWNLOAD */}
+      {/* DOWNLOADS */}
 
       <button
         onClick={handleDownload}
@@ -177,3 +194,4 @@ export default function ResourceStats({
     </div>
   );
 }
+
